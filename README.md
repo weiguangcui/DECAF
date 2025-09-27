@@ -1,19 +1,42 @@
-# Astro Starter Kit: Minimal
+# [Astro](https://astro.build) Blog Template
 
-```sh
-npm create astro@latest -- --template minimal
+[![Screenshot](screenshot.png)](https://astro-blog-template.netlify.app/)
+
+## 👉 Check out the ✨ [Live Demo](https://astro-blog-template.netlify.app/) ✨
+
+## 👩‍🚀 Getting Started
+
+### Locally
+
+```
+npm init astro -- --template Charca/astro-blog-template
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### On StackBlitz
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/charca/astro-blog-template)
+
+## ✨ Features:
+
+- ✅ Astro 4.0
+- ✅ Dark Mode
+- ✅ Full Markdown support
+- ✅ SEO-friendly setup with canonical URLs and OpenGraph data
+- ✅ RSS 2.0 generation
+- ✅ Sitemap.xml generation
 
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
 
-```text
+```
 /
 ├── public/
+│   ├── robots.txt
+│   └── favicon.ico
 ├── src/
+│   ├── components/
+│   │   └── Tour.astro
 │   └── pages/
 │       └── index.astro
 └── package.json
@@ -29,15 +52,13 @@ Any static assets, like images, can be placed in the `public/` directory.
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| Command           | Action                                       |
+| :---------------- | :------------------------------------------- |
+| `npm install`     | Installs dependencies                        |
+| `npm run dev`     | Starts local dev server at `localhost:3030`  |
+| `npm run build`   | Build your production site to `./dist/`      |
+| `npm run preview` | Preview your build locally, before deploying |
 
 ## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Feel free to check [Astro's documentation](https://github.com/withastro/astro) or jump into Astro's [Discord server](https://astro.build/chat).

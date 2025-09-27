@@ -1,16 +1,128 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/home.css';
+import { getLatestEvent } from '../lib/events';
 
+const title = 'DECAF-DIFT';
+const description = 'The perfect starter for your perfect blog.';
+const permalink = Astro.site.href;
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function simpleMarkdownToHtml(md: string): string {
+  // Very small converter: supports #/## headings and paragraphs.
+  const lines = md.replace(/\r/g, '').split('\n');
+  const out: string[] = [];
+  let para: string[] = [];
+
+  function flushPara() {
+    if (para.length) {
+      const text = escapeHtml(para.join(' ')).trim();
+      if (text) out.push(`<p>${text}</p>`);
+      para = [];
+    }
+  }
+
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    if (!line.trim()) { flushPara(); continue; }
+    if (line.startsWith('## ')) { flushPara(); out.push(`<h2>${escapeHtml(line.slice(3))}</h2>`); continue; }
+    if (line.startsWith('# ')) { flushPara(); out.push(`<h1>${escapeHtml(line.slice(2))}</h1>`); continue; }
+    para.push(line);
+  }
+  flushPara();
+  return out.join('\n');
+}
+
+const latestInfo = await getLatestEvent();
+const mdHtml = latestInfo?.content ? simpleMarkdownToHtml(latestInfo.content) : null;
+
+// Server-side APOD fetch
+const NASA_API_KEY = import.meta.env.PUBLIC_NASA_API_KEY || 'DEMO_KEY';
+let apodBgUrl: string | null = null;
+try {
+  const res = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`);
+  if (res.ok) {
+    const data = await res.json();
+    if (data.media_type === 'image') {
+      apodBgUrl = data.hdurl || data.url || null;
+    } else if (data.media_type === 'video') {
+      apodBgUrl = data.thumbnail_url || data.hdthumbnail || null;
+    }
+  }
+} catch (e) {
+  apodBgUrl = null;
+}
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title={title} description={description} permalink={permalink}>
+  <div
+    class={`home-container ${apodBgUrl ? 'apod-has-bg' : ''}`}
+    id="apod-bg"
+    style={apodBgUrl ? `background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('${apodBgUrl}')` : undefined}
+  >
+    <div class="home-copy">
+      <h1>DECAF-DIFT Seminar Series present:</h1>
+      {latestInfo ? (
+        <>
+          {latestInfo.title && (
+            <div class="event-title">{latestInfo.title}</div>
+          )}
+          {(latestInfo.speaker || latestInfo.affiliation) && (
+            <p class="event-meta-primary">
+              {latestInfo.speaker ? (<span class="event-speaker">{latestInfo.speaker}</span>) : ''}
+              {latestInfo.affiliation ? ` (${latestInfo.affiliation})` : ''}
+            </p>
+          )}
+          {(latestInfo.date || latestInfo.time || latestInfo.location || (!latestInfo.title && !latestInfo.speaker && latestInfo.excerpt)) && (
+            <p class="event-meta-secondary">
+              {latestInfo.date ? `${latestInfo.date}` : ''}
+              {latestInfo.time ? ` • ${latestInfo.time}` : ''}
+              {latestInfo.location ? ` • ${latestInfo.location}` : ''}
+              {(!latestInfo.title && !latestInfo.speaker && latestInfo.excerpt) ? ` • ${latestInfo.excerpt}` : ''}
+            </p>
+          )}
+        </>
+      ) : null}
+
+      {mdHtml && (
+        <div class="event-markdown" set:html={mdHtml} />
+      )}
+    </div>
+
+    <div class="hero-image-container">
+      {latestInfo && latestInfo.imagePath ? (
+        <picture>
+          <img
+            class="hero-image"
+            alt={latestInfo.title ? `${latestInfo.title} poster` : 'Event image'}
+            src={latestInfo.imagePath}
+            width="550"
+            height="466"
+          />
+        </picture>
+      ) : (
+        <picture>
+          <img class="hero-image" alt="Illustration of person reading a book" src="/assets/home-illustration-small.webp" width="550" height="466" />
+        </picture>
+      )}
+      {!(latestInfo && latestInfo.imagePath) && (
+        <p class="caption">
+          Illustration by
+          <a href="https://icons8.com/illustrations/author/5c07e68d82bcbc0092519bb6" target="_blank" rel="noopener">Icons 8</a>
+          from
+          <a href="https://icons8.com/illustrations" target="_blank" rel="noopener">Ouch!</a>
+        </p>
+      )}
+    </div>
+  </div>
+</BaseLayout>
+
+<!-- styles moved to src/styles/home.css -->

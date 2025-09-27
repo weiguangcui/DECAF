@@ -1,5 +1,29 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from 'astro/config'
+import svelte from '@astrojs/svelte'
+import mdx from '@astrojs/mdx'
+import remarkGfm from 'remark-gfm'
+import remarkSmartypants from 'remark-smartypants'
+import rehypeExternalLinks from 'rehype-external-links'
+import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  integrations: [tailwind()],
+  site: 'https://weiguangcui.github.io',
+  base: '',
+  integrations: [mdx(), svelte()],
+  markdown: {
+    shikiConfig: {
+      theme: 'nord',
+    },
+    remarkPlugins: [remarkGfm, remarkSmartypants],
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          target: '_blank',
+        },
+      ],
+    ],
+  },
+})

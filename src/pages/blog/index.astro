@@ -1,0 +1,97 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPastEvents } from '../../lib/events';
+
+const title = 'Blog';
+const description = 'Latest articles.';
+const permalink = `${Astro.site.href}blog`;
+
+let allPosts = await getCollection('posts')
+allPosts = allPosts.sort((a, b) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf());
+
+const pastEvents = await getPastEvents();
+---
+
+<BaseLayout title={title} description={description} permalink={permalink} current="blog">
+  <div class="container">
+    <h1>Past Events</h1>
+    {pastEvents.length > 0 ? (
+      <div class="events-list">
+        {pastEvents.map((ev) => (
+          <div class="event-item">
+            <h2 class="event-title">{ev.title || ev.dir}</h2>
+            <p class="event-meta">
+              {ev.speaker ? ev.speaker : ''}
+              {ev.affiliation ? ` (${ev.affiliation})` : ''}
+              {ev.date ? ` • ${ev.date}` : ''}
+              {ev.time ? ` • ${ev.time}` : ''}
+              {ev.location ? ` • ${ev.location}` : ''}
+            </p>
+            {ev.excerpt ? <p class="event-excerpt">{ev.excerpt}</p> : null}
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p>No past events found.</p>
+    )}
+
+    <h1>Blog</h1>
+    {allPosts.map((post, index) => {
+      const href = `/blog/${post.data.slug}`;
+      return (
+        <div>
+          { index !== 0 && <hr /> }
+          <div class="post-item">
+            <h2>
+              <a href={href}>{post.data.title}</a>
+            </h2>
+            <p>{post.data.description}</p>
+            <div class="post-item-footer">
+              <span class="post-item-date">— {post.data.publishDate}</span>
+            </div>
+          </div>
+        </div>
+      )
+    })}
+  </div>
+</BaseLayout>
+
+<style>
+  .events-list {
+    margin-bottom: 40px;
+  }
+  .event-item + .event-item {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+  }
+  .event-title {
+    font-family: var(--font-family-sans);
+    font-weight: 700;
+    margin: 0 0 6px 0;
+  }
+  .event-meta {
+    color: var(--text-secondary);
+    margin: 0 0 6px 0;
+  }
+  .event-excerpt {
+    margin: 0;
+  }
+  h2,
+  .post-item-footer {
+    font-family: var(--font-family-sans);
+    font-weight: 700;
+  }
+
+  .post-item-date {
+    color: var(--text-secondary);
+    text-align: left;
+    text-transform: uppercase;
+    margin-right: 16px;
+  }
+
+  hr {
+    margin: 60px auto;
+  }
+</style>

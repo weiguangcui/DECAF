@@ -1,0 +1,129 @@
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const matter = require('gray-matter');
+
+export type EventInfo = {
+  dir: string; // YYYY-MM-DD
+  mdPath: string;
+  imagePath?: string | null; // web path starting with '/'
+  content?: string; // raw markdown content
+  title?: string | null;
+  speaker?: string | null;
+  affiliation?: string | null;
+  date?: string | null;
+  time?: string | null;
+  location?: string | null;
+  excerpt?: string | null;
+};
+
+function resolveFirstExistingDir(urls: URL[]): string | null {
+  for (const u of urls) {
+    const p = u.pathname;
+    if (fs.existsSync(p) && fs.statSync(p).isDirectory()) return p;
+  }
+  return null;
+}
+
+function makeExcerpt(text: string, maxLen = 220): string {
+  const t = text.replace(/\r/g, '').trim();
+  if (!t) return '';
+  const para = t.split('\n\n')[0] || t;
+  return para.length > maxLen ? para.slice(0, maxLen).trimEnd() + '…' : para;
+}
+
+function getEventDirs(baseDir: string): string[] {
+  const entries = fs.readdirSync(baseDir, { withFileTypes: true });
+  return entries
+    .filter((e) => e.isDirectory() && /^\d{4}-\d{2}-\d{2}$/.test(e.name))
+    .map((e) => e.name)
+    .sort((a, b) => (a < b ? 1 : a > b ? -1 : 0));
+}
+
+function findMarkdownFile(dirPath: string): string | null {
+  const files = fs.readdirSync(dirPath, { withFileTypes: true });
+  const md = files.find((f) => f.isFile() && /\.mdx?$/.test(f.name));
+  return md ? path.join(dirPath, md.name) : null;
+}
+
+function findImageFile(dirPath: string): string | null {
+  const files = fs.readdirSync(dirPath, { withFileTypes: true });
+  const img = files.find((f) =>
+    f.isFile() && /\.(png|jpe?g|webp|gif|svg)$/i.test(f.name)
+  );
+  return img ? path.join(dirPath, img.name) : null;
+}
+
+function toWebPathFromPublic(absPath: string): string | null {
+  const parts = absPath.split(path.sep);
+  const idx = parts.lastIndexOf('public');
+  if (idx === -1) return null;
+  const relParts = parts.slice(idx + 1);
+  const web = '/' + relParts.join('/');
+  return web;
+}
+
+function parseEvent(baseDir: string, dirName: string): EventInfo | null {
+  const full = path.join(baseDir, dirName);
+  const mdPath = findMarkdownFile(full);
+  if (!mdPath) return null;
+  const imgAbs = findImageFile(full);
+  try {
+    const raw = fs.readFileSync(mdPath, 'utf-8');
+    const { data, content } = matter(raw);
+    const imagePath = imgAbs ? toWebPathFromPublic(imgAbs) : null;
+    return {
+      dir: dirName,
+      mdPath,
+      imagePath,
+      content,
+      title: (data.title as string) || null,
+      speaker: (data.speaker as string) || (data.name as string) || null,
+      affiliation: (data.affiliation as string) || null,
+      date: (data.date as string) || dirName,
+      time: (data.time as string) || null,
+      location: (data.location as string) || null,
+      excerpt: makeExcerpt(content),
+    } as EventInfo;
+  } catch {
+    return null;
+  }
+}
+
+function getBaseDir(): string | null {
+  const candidates = [
+    new URL('../../public/blog/', import.meta.url),
+    new URL('../../public/assets/blog/', import.meta.url),
+  ];
+  return resolveFirstExistingDir(candidates);
+}
+
+export async function getLatestEvent(): Promise<EventInfo | null> {
+  const baseDir = getBaseDir();
+  if (!baseDir) return null;
+  const dirs = getEventDirs(baseDir);
+  for (const d of dirs) {
+    const ev = parseEvent(baseDir, d);
+    if (ev) return ev;
+  }
+  return null;
+}
+
+export async function getAllEvents(): Promise<EventInfo[]> {
+  const baseDir = getBaseDir();
+  if (!baseDir) return [];
+  const dirs = getEventDirs(baseDir);
+  const events: EventInfo[] = [];
+  for (const d of dirs) {
+    const ev = parseEvent(baseDir, d);
+    if (ev) events.push(ev);
+  }
+  return events;
+}
+
+export async function getPastEvents(limit?: number): Promise<EventInfo[]> {
+  const all = await getAllEvents();
+  const past = all.slice(1); // exclude latest
+  return typeof limit === 'number' ? past.slice(0, limit) : past;
+}
