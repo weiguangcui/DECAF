@@ -103,11 +103,32 @@ export async function getLatestEvent(): Promise<EventInfo | null> {
   const baseDir = getBaseDir();
   if (!baseDir) return null;
   const dirs = getEventDirs(baseDir);
+  const events: (EventInfo & { __date?: Date | null })[] = [];
   for (const d of dirs) {
     const ev = parseEvent(baseDir, d);
-    if (ev) return ev;
+    if (ev) {
+      const ds = (ev.date || ev.dir || '').trim();
+      const dt = ds ? new Date(ds) : null;
+      events.push(Object.assign(ev, { __date: dt && !isNaN(dt.getTime()) ? dt : null }));
+    }
   }
-  return null;
+  if (!events.length) return null;
+
+  // Today at 00:00 for comparison
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Nearest upcoming: date >= today, sort asc
+  const upcoming = events
+    .filter(e => e.__date && e.__date >= today)
+    .sort((a, b) => (a.__date as Date).getTime() - (b.__date as Date).getTime());
+  if (upcoming.length) return upcoming[0];
+
+  // Fallback: most recent past, sort desc
+  const past = events
+    .filter(e => e.__date && e.__date < today)
+    .sort((a, b) => (b.__date as Date).getTime() - (a.__date as Date).getTime());
+  return past.length ? past[0] : events[0];
 }
 
 export async function getAllEvents(): Promise<EventInfo[]> {
