@@ -15,7 +15,7 @@ const HAS_ACTION = typeof ACTION === 'string' && ACTION.trim().length > 0;
     <p>Get an email when new events are posted.</p>
 
     {HAS_ACTION ? (
-      <form class="subscribe-form" method="post" action={ACTION} target="_blank" rel="noopener noreferrer">
+      <form class="subscribe-form" method="post" action={ACTION} target="_blank">
         <label class="sr-only" for="email">Email address</label>
         <input id="email" name="email" type="email" placeholder="you@example.com" required />
         <!-- Honeypot field to reduce spam; common providers ignore unknown fields -->

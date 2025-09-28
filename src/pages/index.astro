@@ -4,7 +4,7 @@ import '../styles/home.css';
 import { getLatestEvent } from '../lib/events';
 
 const title = 'DeCAF';
-const description = 'The DFT-CIAFF seminar series.';
+const description = 'The DFT-CIAFF colloquium series.';
 const permalink = Astro.site.href;
 
 function escapeHtml(str: string): string {
@@ -70,7 +70,7 @@ try {
     style={apodBgUrl ? `background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('${apodBgUrl}')` : undefined}
   >
     <div class="home-copy">
-      <h1>DeCAF Seminar Series:</h1>
+      <h1>DeCAF Colloquium Series:</h1>
       {latestInfo ? (
         <>
           {latestInfo.title && (
