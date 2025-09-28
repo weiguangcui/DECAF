@@ -1,8 +1,17 @@
+---
+const rawBASE = (import.meta as any).env?.BASE_URL ?? '/';
+const BASE = rawBASE.endsWith('/') ? rawBASE : `${rawBASE}/`;
+---
 <footer>
   <span>
-    &copy; {new Date().getFullYear()} DECAF-DIFT
-    Sponsored by <a href="https://www.uam.es/ciencias/facultad/departamentos/fisica-teorica" target="_blank" rel="noopener">DFT, UAM</a>.
+    &copy; {new Date().getFullYear()} DeCAF (DFT-CIAFF joint seminar series)
+    is sponsored by <a href="https://www.uam.es/ciencias/facultad/departamentos/fisica-teorica" target="_blank" rel="noopener">DFT, UAM</a>.
   </span>
+  <div class="footer-links">
+    <a href={`${BASE}subscribe`}>Subscribe</a>
+    <span class="sep">•</span>
+    <a href={`${BASE}feed.xml`}>RSS</a>
+  </div>
 </footer>
 
 <style>
@@ -15,4 +24,16 @@
     text-align: center;
     width: 100%;
   }
+  .footer-links {
+    margin-top: .5em;
+  }
+  .footer-links a {
+    color: inherit;
+    text-decoration: none;
+    margin: 0 .25em;
+  }
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  .footer-links .sep { opacity: .6; margin: 0 .25em; }
 </style>

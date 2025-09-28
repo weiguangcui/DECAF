@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Subscribe to Updates';
+const description = 'Get notified when new events are published.';
+const permalink = `${Astro.site.href}subscribe`;
+
+const ACTION: string | undefined = import.meta.env.PUBLIC_SUBSCRIBE_ACTION;
+const HAS_ACTION = typeof ACTION === 'string' && ACTION.trim().length > 0;
+---
+
+<BaseLayout title={title} description={description} permalink={permalink} current="subscribe">
+  <div class="container">
+    <h1>Subscribe</h1>
+    <p>Get an email when new events are posted.</p>
+
+    {HAS_ACTION ? (
+      <form class="subscribe-form" method="post" action={ACTION} target="_blank" rel="noopener noreferrer">
+        <label class="sr-only" for="email">Email address</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        <!-- Honeypot field to reduce spam; common providers ignore unknown fields -->
+        <input type="text" name="_hp" tabindex="-1" autocomplete="off" style="display:none" />
+        <button type="submit">Subscribe</button>
+      </form>
+    ) : (
+      <div class="setup">
+        <p><strong>Setup required:</strong> No subscription provider is configured.</p>
+        <ol>
+          <li><strong>Choose a provider.</strong> Buttondown, Mailchimp, ConvertKit, etc.</li>
+          <li><strong>Create a public subscribe endpoint URL.</strong> For example:
+            <ul>
+              <li>Buttondown: https://buttondown.email/api/emails/embed-subscribe/your-list-id</li>
+              <li>Mailchimp: Your audience embed form URL</li>
+            </ul>
+          </li>
+          <li><strong>Set an environment variable</strong> <code>PUBLIC_SUBSCRIBE_ACTION</code> to that URL.
+            On local dev, you can add it to an <code>.env</code> file; on deployment, set it in your host settings.
+          </li>
+          <li>Reload the site; this page will render the live form.</li>
+        </ol>
+        <p>Alternatively, users can follow our <a href="../feed.xml">RSS feed</a>.</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 720px;
+  }
+  .subscribe-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .subscribe-form input[type="email"] {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: var(--bg, #fff);
+    color: inherit;
+  }
+  .subscribe-form button {
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--primary-color);
+    background: var(--primary-color);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .subscribe-form button:hover {
+    filter: brightness(0.95);
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  .setup ol {
+    margin-left: 1.2em;
+  }
+</style>

@@ -15,8 +15,11 @@ const pastEvents = await getPastEvents();
     {pastEvents.length > 0 ? (
       <div class="events-list">
         {pastEvents.map((ev) => (
-          <div class="event-item">
-            <h2 class="event-title">{ev.title || ev.dir}</h2>
+          <div class="event-item" id={ev.dir}>
+            <h2 class="event-title">
+              {ev.title || ev.dir}
+              <a class="event-permalink" href={`#${encodeURIComponent(ev.dir)}`} aria-label="Permalink">¶</a>
+            </h2>
             <p class="event-meta">
               {ev.speaker ? ev.speaker : ''}
               {ev.affiliation ? ` (${ev.affiliation})` : ''}
@@ -48,6 +51,15 @@ const pastEvents = await getPastEvents();
     font-family: var(--font-family-sans);
     font-weight: 700;
     margin: 0 0 6px 0;
+  }
+  .event-title .event-permalink {
+    font-weight: 400;
+    margin-left: .5em;
+    opacity: .5;
+    text-decoration: none;
+  }
+  .event-title .event-permalink:hover {
+    opacity: 1;
   }
   .event-meta {
     color: var(--text-secondary);
