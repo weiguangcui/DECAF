@@ -1,29 +1,20 @@
-# [Astro](https://astro.build) Blog Template
+# This is for our DECAF + DIFT seminar series site
 
-[![Screenshot](screenshot.png)](https://astro-blog-template.netlify.app/)
 
-## 👉 Check out the ✨ [Live Demo](https://astro-blog-template.netlify.app/) ✨
+## Usage
 
-## 👩‍🚀 Getting Started
+- **Add/Update an event**
+  - Create a folder per event under `public/assets/blog/YYYY-MM-DD/`.
+  - Inside, add `info.md` with YAML frontmatter, and optional poster image (e.g., `info.png`).
+  - Supported frontmatter fields in `info.md`:
+    - `title`, `speaker`, `affiliation`, `date` (`YYYY-MM-DD`), `time`, `location`, `posterUrl` (e.g., `./info.png`).
+  - The homepage shows the nearest upcoming event (fallback to most recent past). The full Markdown body of `info.md` renders on the front page.
+  - see the example in the `public/assets/blog/2025-10-01/` folder.
 
-### Locally
+- **APOD background (optional)**
+  - Server-side fetch of NASA APOD sets the homepage background.
+  - To avoid DEMO_KEY rate limits, set `PUBLIC_NASA_API_KEY` in your environment.
 
-```
-npm init astro -- --template Charca/astro-blog-template
-```
-
-### On StackBlitz
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/charca/astro-blog-template)
-
-## ✨ Features:
-
-- ✅ Astro 4.0
-- ✅ Dark Mode
-- ✅ Full Markdown support
-- ✅ SEO-friendly setup with canonical URLs and OpenGraph data
-- ✅ RSS 2.0 generation
-- ✅ Sitemap.xml generation
 
 ## 🚀 Project Structure
 
@@ -34,21 +25,29 @@ Inside of your Astro project, you'll see the following folders and files:
 ├── public/
 │   ├── robots.txt
 │   └── favicon.ico
+├── public/assets/
+│   └── blog/
+│       └── YYYY-MM-DD/
+│           ├── info.md       # frontmatter + markdown body for the event
+│           └── info.png      # optional poster (refer via posterUrl: "./info.png")
 ├── src/
 │   ├── components/
-│   │   └── Tour.astro
-│   └── pages/
-│       └── index.astro
+│   │   ├── Logo.astro
+│   │   └── Nav.astro
+│   ├── layouts/
+│   │   └── BaseLayout.astro
+│   ├── lib/
+│   │   └── events.ts         # reads events from public/assets/blog
+│   ├── pages/
+│   │   ├── index.astro       # homepage shows latest/nearest event
+│   │   └── blog/
+│   │       └── index.astro   # Past Events list
+│   └── styles/
+│       └── home.css
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
+## 🧞 Commands for local development
 
 All commands are run from the root of the project, from a terminal:
 
@@ -62,3 +61,13 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [Astro's documentation](https://github.com/withastro/astro) or jump into Astro's [Discord server](https://astro.build/chat).
+
+## 📝 License
+
+MIT
+
+## Contact
+
+Weiguang Cui
+weiguang.cui@uam.es
+

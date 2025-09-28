@@ -64,6 +64,29 @@ function toWebPathFromPublic(absPath: string): string | null {
   return web;
 }
 
+function normalizePosterUrl(mdDir: string, posterUrl: string): string | null {
+  if (!posterUrl) return null;
+  const u = posterUrl.trim();
+  if (!u) return null;
+  // Full URL
+  if (/^https?:\/\//i.test(u)) return u;
+  // If path includes /public/, convert to web root path
+  const pubIdx = u.indexOf('/public/');
+  if (pubIdx !== -1) {
+    return u.slice(pubIdx + '/public'.length);
+  }
+  // If it starts with './' or '../', resolve relative to mdDir and then map from public
+  if (u.startsWith('./') || u.startsWith('../')) {
+    const abs = path.resolve(mdDir, u);
+    return toWebPathFromPublic(abs);
+  }
+  // If it starts with '/', assume it's already a web path
+  if (u.startsWith('/')) return u;
+  // Otherwise, try to resolve relative to mdDir
+  const abs = path.resolve(mdDir, u);
+  return toWebPathFromPublic(abs);
+}
+
 function parseEvent(baseDir: string, dirName: string): EventInfo | null {
   const full = path.join(baseDir, dirName);
   const mdPath = findMarkdownFile(full);
@@ -72,7 +95,14 @@ function parseEvent(baseDir: string, dirName: string): EventInfo | null {
   try {
     const raw = fs.readFileSync(mdPath, 'utf-8');
     const { data, content } = matter(raw);
-    const imagePath = imgAbs ? toWebPathFromPublic(imgAbs) : null;
+    // Prefer posterUrl from frontmatter if provided
+    let imagePath: string | null = null;
+    if (typeof data.posterUrl === 'string') {
+      imagePath = normalizePosterUrl(path.dirname(mdPath), data.posterUrl as string) || null;
+    }
+    if (!imagePath && imgAbs) {
+      imagePath = toWebPathFromPublic(imgAbs);
+    }
     return {
       dir: dirName,
       mdPath,
