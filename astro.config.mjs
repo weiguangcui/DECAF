@@ -9,7 +9,7 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind()],
-  site: 'https://weiguangcui.github.io',
+  site: 'https://weiguangcui.github.io/DECAF/',
   base: '',
   integrations: [mdx(), svelte()],
   markdown: {
