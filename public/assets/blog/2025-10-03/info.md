@@ -1,5 +1,5 @@
 ---
-title: "Structure and dynamics of the local group galaxies"
+title: "[extra] Structure and dynamics of the local group galaxies"
 speaker: "Prof. Juntai Shen"
 date: "2025-10-03"
 time: "11:00 AM - 12:00 AM"
