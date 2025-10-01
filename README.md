@@ -1,4 +1,4 @@
-# This is for our DeCAF colloquium site
+# This is for our DeCAF Seminar site
 
 
 ## Usage
