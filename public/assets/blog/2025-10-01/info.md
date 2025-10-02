@@ -6,6 +6,8 @@ time: "3:00 PM - 4:00 PM"
 location: "Module 15, Sala 201"
 affiliation: "Juan de la Cierva fellow, UAM"
 posterUrl: "./info.png"
+slides: "./Ellen.pdf"  # Add this for slides
+video: "https://youtube.com/example"  # Add this for video
 ---
 
 Abstract: Dark matter constitutes the majority of the matter content of the Universe, yet its fundamental properties remain unknown. Its presence is inferred through its gravitational effects on cosmic structures of all scales. Galaxy clusters are the most massive gravitationally bound structures in the Universe, with extremely high dark matter densities, making them ideal environments to probe the nature of dark matter. For example, if dark matter particles can interact with each other, this could lead to visible effects such as shifts between gas and dark matter during collisions, rounder galaxy cluster shapes, the loss of smaller substructures, and changes to the density distribution of objects. In this talk I will introduce some of the evidence for dark matter and the ways we are trying to find it, and present my work studying the effects of self-interacting dark matter using computer simulations of galaxy clusters.
