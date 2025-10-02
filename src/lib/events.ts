@@ -16,6 +16,8 @@ export type EventInfo = {
   time?: string | null;
   location?: string | null;
   excerpt?: string | null;
+  slidesUrl?: string | null; // URL to presentation slides
+  videoUrl?: string | null;  // URL to recorded video
 };
 
 function resolveFirstExistingDir(urls: URL[]): string | null {
@@ -115,6 +117,8 @@ function parseEvent(baseDir: string, dirName: string): EventInfo | null {
       time: (data.time as string) || null,
       location: (data.location as string) || null,
       excerpt: makeExcerpt(content),
+      slidesUrl: (data.slides as string) || null,
+      videoUrl: (data.video as string) || null,
     } as EventInfo;
   } catch {
     return null;

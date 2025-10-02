@@ -5,7 +5,7 @@ import { getPastEvents } from '../../lib/events';
 const title = 'Events';
 const description = 'Past Events';
 const permalink = `${Astro.site.href}events`;
-
+const BASE: string = (import.meta as any).env?.BASE_URL || '/';
 const pastEvents = await getPastEvents();
 ---
 
@@ -28,6 +28,23 @@ const pastEvents = await getPastEvents();
               {ev.location ? ` • ${ev.location}` : ''}
             </p>
             {ev.excerpt ? <p class="event-excerpt">{ev.excerpt}</p> : null}
+            <div class="event-links">
+              {ev.imagePath && (
+                <a href={ev.imagePath.startsWith('/') ? `${BASE}${ev.imagePath.slice(1)}` : `${BASE}${ev.imagePath}`} class="event-link" target="_blank" rel="noopener noreferrer">
+                  📄 Poster
+                </a>
+              )}
+              {ev.slidesUrl && (
+                <a href={ev.slidesUrl.startsWith('/') ? `${BASE}${ev.slidesUrl.slice(1)}` : `${BASE}${ev.slidesUrl}`} class="event-link" target="_blank" rel="noopener noreferrer">
+                  📊 Slides
+                </a>
+              )}
+              {ev.videoUrl && (
+                <a href={ev.videoUrl.startsWith('/') ? `${BASE}${ev.videoUrl.slice(1)}` : `${BASE}${ev.videoUrl}`} class="event-link" target="_blank" rel="noopener noreferrer">
+                  ▶️ Video
+                </a>
+              )}
+            </div>
           </div>
         ))}
       </div>
@@ -51,6 +68,28 @@ const pastEvents = await getPastEvents();
     font-family: var(--font-family-sans);
     font-weight: 700;
     margin: 0 0 6px 0;
+  }
+  .event-links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .event-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    background: var(--color-bg-secondary);
+    border-radius: 4px;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+  }
+  .event-link:hover {
+    background: var(--color-bg-tertiary);
+    text-decoration: none;
   }
   .event-title .event-permalink {
     font-weight: 400;
