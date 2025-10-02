@@ -89,21 +89,50 @@ function normalizePosterUrl(mdDir: string, posterUrl: string): string | null {
   return toWebPathFromPublic(abs);
 }
 
+function normalizeUrl(baseDir: string, url: string | undefined, mdDir: string): string | null {
+  if (!url) return null;
+  const u = url.trim();
+  if (!u) return null;
+  
+  // If it's an absolute URL, return as is
+  if (u.startsWith('http://') || u.startsWith('https://') || u.startsWith('//')) {
+    return u;
+  }
+  
+  // If it's a path starting with '/', it's already a web path
+  if (u.startsWith('/')) {
+    return u.startsWith('/DECAF/') ? u : `/DECAF${u}`;
+  }
+  
+  // For relative paths, resolve them relative to the markdown file's directory
+  const absPath = path.resolve(mdDir, u);
+  const webPath = toWebPathFromPublic(absPath);
+  
+  // Ensure the path starts with /DECAF/
+  return webPath?.startsWith('/DECAF/') ? webPath : `/DECAF${webPath || ''}`;
+}
+
 function parseEvent(baseDir: string, dirName: string): EventInfo | null {
   const full = path.join(baseDir, dirName);
   const mdPath = findMarkdownFile(full);
   if (!mdPath) return null;
   const imgAbs = findImageFile(full);
+  const mdDir = path.dirname(mdPath);
+  
   try {
     const raw = fs.readFileSync(mdPath, 'utf-8');
     const { data, content } = matter(raw);
-    // Prefer posterUrl from frontmatter if provided
+    
+    // Process poster URL
     let imagePath: string | null = null;
     if (typeof data.posterUrl === 'string') {
-      imagePath = normalizePosterUrl(path.dirname(mdPath), data.posterUrl as string) || null;
+      imagePath = normalizeUrl(baseDir, data.posterUrl, mdDir);
     }
     if (!imagePath && imgAbs) {
       imagePath = toWebPathFromPublic(imgAbs);
+      if (imagePath && !imagePath.startsWith('/DECAF/')) {
+        imagePath = `/DECAF${imagePath}`;
+      }
     }
     return {
       dir: dirName,
@@ -117,8 +146,8 @@ function parseEvent(baseDir: string, dirName: string): EventInfo | null {
       time: (data.time as string) || null,
       location: (data.location as string) || null,
       excerpt: makeExcerpt(content),
-      slidesUrl: (data.slides as string) || null,
-      videoUrl: (data.video as string) || null,
+      slidesUrl: normalizeUrl(baseDir, data.slides, mdDir),
+      videoUrl: normalizeUrl(baseDir, data.video, mdDir),
     } as EventInfo;
   } catch {
     return null;
