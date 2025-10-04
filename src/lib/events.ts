@@ -70,8 +70,8 @@ function normalizePosterUrl(mdDir: string, posterUrl: string): string | null {
   if (!posterUrl) return null;
   const u = posterUrl.trim();
   if (!u) return null;
-  // Full URL
-  if (/^https?:\/\//i.test(u)) return u;
+  // Full URL (including protocol-relative URLs)
+  if (/^https?:\/\//i.test(u) || u.startsWith('//')) return u;
   // If path includes /public/, convert to web root path
   const pubIdx = u.indexOf('/public/');
   if (pubIdx !== -1) {
@@ -93,21 +93,27 @@ function normalizeUrl(baseDir: string, url: string | undefined, mdDir: string): 
   if (!url) return null;
   const u = url.trim();
   if (!u) return null;
-  
+
   // If it's an absolute URL, return as is
   if (u.startsWith('http://') || u.startsWith('https://') || u.startsWith('//')) {
     return u;
   }
-  
+
+  // If path includes /public/, convert to web root path
+  const pubIdx = u.indexOf('/public/');
+  if (pubIdx !== -1) {
+    return u.slice(pubIdx + '/public'.length);
+  }
+
   // If it's a path starting with '/', it's already a web path
   if (u.startsWith('/')) {
     return u.startsWith('/DECAF/') ? u : `/DECAF${u}`;
   }
-  
+
   // For relative paths, resolve them relative to the markdown file's directory
   const absPath = path.resolve(mdDir, u);
   const webPath = toWebPathFromPublic(absPath);
-  
+
   // Ensure the path starts with /DECAF/
   return webPath?.startsWith('/DECAF/') ? webPath : `/DECAF${webPath || ''}`;
 }
@@ -126,7 +132,7 @@ function parseEvent(baseDir: string, dirName: string): EventInfo | null {
     // Process poster URL
     let imagePath: string | null = null;
     if (typeof data.posterUrl === 'string') {
-      imagePath = normalizeUrl(baseDir, data.posterUrl, mdDir);
+      imagePath = normalizePosterUrl(mdDir, data.posterUrl);
     }
     if (!imagePath && imgAbs) {
       imagePath = toWebPathFromPublic(imgAbs);

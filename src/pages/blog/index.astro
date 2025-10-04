@@ -30,17 +30,17 @@ const pastEvents = await getPastEvents();
             {ev.excerpt ? <p class="event-excerpt">{ev.excerpt}</p> : null}
             <div class="event-links">
               {ev.imagePath && (
-                <a href={ev.imagePath.startsWith('/') ? `${BASE}${ev.imagePath.slice(1)}` : `${BASE}${ev.imagePath}`} class="event-link" target="_blank" rel="noopener noreferrer">
+                <a href={ev.imagePath.startsWith('http://') || ev.imagePath.startsWith('https://') || ev.imagePath.startsWith('//') ? ev.imagePath : ev.imagePath.startsWith('/') ? `${BASE}${ev.imagePath.slice(1)}` : `${BASE}${ev.imagePath}`} class="event-link" target="_blank" rel="noopener noreferrer">
                   📄 Poster
                 </a>
               )}
               {ev.slidesUrl && (
-                <a href={ev.slidesUrl.startsWith('/') ? `${BASE}${ev.slidesUrl.slice(1)}` : `${BASE}${ev.slidesUrl}`} class="event-link" target="_blank" rel="noopener noreferrer">
+                <a href={ev.slidesUrl.startsWith('http://') || ev.slidesUrl.startsWith('https://') || ev.slidesUrl.startsWith('//') ? ev.slidesUrl : ev.slidesUrl.startsWith('/') ? `${BASE}${ev.slidesUrl.slice(1)}` : `${BASE}${ev.slidesUrl}`} class="event-link" target="_blank" rel="noopener noreferrer">
                   📊 Slides
                 </a>
               )}
               {ev.videoUrl && (
-                <a href={ev.videoUrl.startsWith('/') ? `${BASE}${ev.videoUrl.slice(1)}` : `${BASE}${ev.videoUrl}`} class="event-link" target="_blank" rel="noopener noreferrer">
+                <a href={ev.videoUrl.startsWith('http://') || ev.videoUrl.startsWith('https://') || ev.videoUrl.startsWith('//') ? ev.videoUrl : ev.videoUrl.startsWith('/') ? `${BASE}${ev.videoUrl.slice(1)}` : `${BASE}${ev.videoUrl}`} class="event-link" target="_blank" rel="noopener noreferrer">
                   ▶️ Video
                 </a>
               )}
