@@ -2,7 +2,7 @@
 title: "Gravitational particle production and leptogenesis"
 speaker: "Dr. Yuber F. Perez-Gonzalez"
 date: "2025-10-08"
-time: "15:00 AM - 16:00 AM"
+time: "15:00 - 16:00"
 location: "Modulo 15, Sala 201"
 affiliation: "UAM and IFT"
 posterUrl: "./info.png"
