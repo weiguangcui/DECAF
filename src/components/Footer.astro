@@ -1,6 +1,7 @@
 ---
 const rawBASE = (import.meta as any).env?.BASE_URL ?? '/';
 const BASE = rawBASE.endsWith('/') ? rawBASE : `${rawBASE}/`;
+const SUBSCRIBE_URL = 'https://subscribepage.io/wLoTXn';
 ---
 <footer>
   <span>
@@ -8,7 +9,7 @@ const BASE = rawBASE.endsWith('/') ? rawBASE : `${rawBASE}/`;
     is sponsored by <a href="https://www.uam.es/ciencias/facultad/departamentos/fisica-teorica" target="_blank" rel="noopener">DFT, UAM</a>.
   </span>
   <div class="footer-links">
-    <a href={`${BASE}subscribe`}>Subscribe</a>
+    <a href={SUBSCRIBE_URL} target="_blank" rel="noopener">Subscribe</a>
     <span class="sep">•</span>
     <a href={`${BASE}feed.xml`}>RSS</a>
   </div>
