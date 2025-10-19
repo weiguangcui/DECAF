@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/home.css';
 import { getLatestEvent } from '../lib/events';
+import { getCachedApodLocalPath, triggerApodUpdateIfNeeded } from '../lib/apod';
 
 const title = 'DeCAF';
 const description = 'The DFT-CIAFF Seminar series.';
@@ -42,24 +43,18 @@ function simpleMarkdownToHtml(md: string): string {
 }
 
 const latestInfo = await getLatestEvent();
-const BASE: string = (import.meta as any).env?.BASE_URL || '/';
+const rawBASE: string = (import.meta as any).env?.BASE_URL || '/';
+const BASE: string = rawBASE.endsWith('/') ? rawBASE : `${rawBASE}/`;
 const mdHtml = latestInfo?.content ? simpleMarkdownToHtml(latestInfo.content) : null;
 
-// Server-side APOD fetch
-const NASA_API_KEY = import.meta.env.PUBLIC_NASA_API_KEY || 'DEMO_KEY';
+// APOD background: read cached path synchronously and trigger a non-blocking daily update
 let apodBgUrl: string | null = null;
-try {
-  const res = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}&thumbs=true`);
-  if (res.ok) {
-    const data = await res.json();
-    if (data.media_type === 'image') {
-      apodBgUrl = data.hdurl || data.url || null;
-    } else if (data.media_type === 'video') {
-      apodBgUrl = data.thumbnail_url || data.hdthumbnail || null;
-    }
+{
+  const localApodPath = getCachedApodLocalPath();
+  if (localApodPath) {
+    apodBgUrl = localApodPath.startsWith('/') ? `${BASE}${localApodPath.slice(1)}` : `${BASE}${localApodPath}`;
   }
-} catch (e) {
-  apodBgUrl = null;
+  triggerApodUpdateIfNeeded();
 }
 ---
 
