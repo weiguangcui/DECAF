@@ -1,5 +1,5 @@
 ---
-title: [extra] "Early (z>=2) massive quenched galaxies: accurate merger tree modelling and insights from COLIBRE"
+title: "[extra] Early (z>=2) massive quenched galaxies: accurate merger tree modelling and insights from COLIBRE"
 speaker: "Angel Chando Gomez"
 date: "2025-10-01"
 time: "11:00 AM - 12:00 AM"
