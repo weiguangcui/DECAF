@@ -1,4 +1,5 @@
--const rawBASE = (import.meta as any).env?.BASE_URL ?? '/';
+---
+const rawBASE = (import.meta as any).env?.BASE_URL ?? '/';
 const BASE = rawBASE.endsWith('/') ? rawBASE : `${rawBASE}/`;
 const SUBSCRIBE_URL = 'https://buttondown.com/department_of_theoretical_physics';
 ---
