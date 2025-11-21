@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/home.css';
 import { getLatestEvent } from '../lib/events';
-import { getCachedApodLocalPath, triggerApodUpdateIfNeeded } from '../lib/apod';
+import { getOrUpdateApodLocalPath } from '../lib/apod';
 
 const title = 'DeCAF';
 const description = 'The DFT-CIAFF Seminar series.';
@@ -47,14 +47,13 @@ const rawBASE: string = (import.meta as any).env?.BASE_URL || '/';
 const BASE: string = rawBASE.endsWith('/') ? rawBASE : `${rawBASE}/`;
 const mdHtml = latestInfo?.content ? simpleMarkdownToHtml(latestInfo.content) : null;
 
-// APOD background: read cached path synchronously and trigger a non-blocking daily update
+// APOD background: fetch or update the local APOD image at build time
 let apodBgUrl: string | null = null;
 {
-  const localApodPath = getCachedApodLocalPath();
+  const localApodPath = await getOrUpdateApodLocalPath();
   if (localApodPath) {
     apodBgUrl = localApodPath.startsWith('/') ? `${BASE}${localApodPath.slice(1)}` : `${BASE}${localApodPath}`;
   }
-  triggerApodUpdateIfNeeded();
 }
 ---
 

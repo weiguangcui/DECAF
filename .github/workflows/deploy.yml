@@ -4,6 +4,8 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * *' # Runs at 08:00 UTC every day
 
 permissions:
   contents: read
