@@ -52,7 +52,8 @@ let apodBgUrl: string | null = null;
 {
   const localApodPath = await getOrUpdateApodLocalPath();
   if (localApodPath) {
-    apodBgUrl = localApodPath.startsWith('/') ? `${BASE}${localApodPath.slice(1)}` : `${BASE}${localApodPath}`;
+    const url = localApodPath.startsWith('/') ? `${BASE}${localApodPath.slice(1)}` : `${BASE}${localApodPath}`;
+    apodBgUrl = `${url}?v=${new Date().getTime()}`;
   }
 }
 ---
