@@ -6,6 +6,7 @@ time: "15:00  - 16:00 "
 location: "Modulo 15, Sala 201"
 affiliation: "UAM and IFT"
 posterUrl: "./info.png"
+video: "https://www.youtube.com/watch?v=sDmjhz-gTgA"  # Add this for video
 ---
 
 Abstract: String theory provides a consistent microscopic framework for gravity and the other fundamental interactions. However, the string-derived models that we understand best differ from our universe in a key aspect: they are spacetime supersymmetric. In this talk, I will introduce supersymmetry and discuss the role it plays in string theory, highlighting the challenges that arise when supersymmetry is broken—both from formal and phenomenological perspectives. I will then comment on a hallmark of the absence of supersymmetry, the stability of the vacuum, and review recent progress toward understanding strings without supersymmetry.

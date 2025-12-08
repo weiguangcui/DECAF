@@ -7,7 +7,7 @@ location: "Module 15, Sala 201"
 affiliation: "DFT, UAM"
 posterUrl: "./info.png"
 # slides: "https://simugal1.ft.uam.es/nextcloud/index.php/s/jsnTwfpJN6WyKSk"  # Add this for slides
-video: "https://ed-ac-uk.zoom.us/rec/share/BkuJD8a35aDfKuFFY1FOQlAQbw0NONtow785On-pMA7qz8Mvrhxr-9nNsRS3Igrj.huvidPhTGnHBFFdA?startTime=1761746485000"  # Add this for video
+video: "https://www.youtube.com/watch?v=OWD9huj9iIc"  # Add this for video
 ---
 Abstract: Galaxy clusters are the end products of the hierarchical formation of structures in the universe in the ΛCDM paradigm. Despite their great masses, clusters are relatively young systems -- some of which are virialized, while others remain dynamically disturbed. Their late formation and large masses make clusters excellent probes of cosmology. Additionally, a wide variety of astrophysical processes in clusters shape their thermodynamic states and influence the evolution of galaxies. In this talk, I will first outline how clusters serve as a unique laboratory for exploring these processes. I will then present my recent work on a ubiquitous phenomenon called sloshing cold front in the nearby Virgo cluster. This cold front lies at roughly 250 kpc from the cluster center and likely belongs to a much larger spiral structure. I will conclude by discussing how hydrodynamic cosmological simulations help reveal the underlying physics driving observational properties of clusters.
 
