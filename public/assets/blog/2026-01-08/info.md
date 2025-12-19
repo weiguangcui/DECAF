@@ -1,5 +1,5 @@
 ---
-title: "The interplay between AGN and gas in galaxies"
+title: "[extra] The interplay between AGN and gas in galaxies"
 speaker: "Dr. Samuel Ward"
 date: "2026-01-08"
 time: "12:00 PM - 13:00 PM"
