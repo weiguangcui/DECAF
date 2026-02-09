@@ -4,7 +4,7 @@ speaker: "Dr. Patrick Foldenauer"
 date: "2026-02-11"
 time: "02:30 PM - 03:30 PM"
 location: "Module 15, Sala 201"
-affiliation: "Instituto de Fisica Teorica (IFT UAM-CSIC)"
+affiliation: "Instituto de Fisica Teorica"
 posterUrl: "./info.png"
 # slides: "" # Add this for slides
 # video: "" # Add this for video
