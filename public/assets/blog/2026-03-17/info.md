@@ -1,0 +1,16 @@
+---
+title: "**EXTRA** Constraining Cosmology with Cluster Weak Lensing"
+speaker: "Prof David Weinberg"
+date: "2026-03-17"
+time: "02:00 PM - 03:00 PM"
+location: "Module 15, Sala 201"
+affiliation: "Ohio State University"
+posterUrl: "./info.png"
+# slides: "" # Add this for slides
+# video: "" # Add this for video
+---
+Abstract: The abundance of massive galaxy clusters is, in principle, a powerful probe of the growth of matter clustering in the universe.  In practice, however, precision cosmology with clusters --- whether identified with X-rays, SZ decrement, or galaxy overdensity --- have been limited by systematic uncertainties associated with cluster selection and the calibration andscatter of the mass-observable relation.  
+
+In this informal seminar, I will argue that cluster cosmology should be approached in a way analogous to galaxy-galaxy lensing, rather than "reconstructing the halo mass function," and that the most promising route to obtaining precise and robust cosmological constraints is to forward model the selection of clusters in optical/near-IR galaxy surveys, predicting the weak lensing signal via N-body simulations. I will summarize results from Salcedo et al. 2025 (Cosmological Constraints from Dark Energy Survey Year 1 Cluster Lensing and Abundances with Simulation-based Forward-Modeling), Salcedo et al. 2024 (Consistency of Dark Energy Survey Year 1 Galaxy Clusters with Planck), Salcedo et al. 2020 (Cosmology with stacked cluster weak lensing and cluster-galaxy cross-correlations) and other recent and ongoing work by our group.
+
+Speaker Bio: David Weinberg is a cosmologist at the Ohio State University. His research focuses on galaxy evolution, large-scale structure, and the use of galaxy clusters to probe cosmology. He received his PhD from Princeton University in 1990 and has been at Ohio State since 1992. A member of the faculty since 1995, Prof. Weinberg studies the large scale structure of the universe, dark energy and dark matter, the formation and evolution of galaxies and quasars, and the intergalactic medium (IGM). He is well-known for his development of “halo occupation” methods to connect observed galaxy clustering to underlying dark matter structure, for theoretical modeling and cosmological applications of the Lyman-alpha forest, and for numerical simulation studies of the mechanisms of galaxy growth. Prof. Weinberg was the Project Spokesperson of SDSS–II and the Project Scientist of SDSS–III; he is also a member of the DES and DESI collaborations and science and infrastructure teams for the Nancy Grace Roman Space Telescope. His work includes a book-length review of Observational Probes of Cosmic Acceleration, examining the methods and prospects for next-generation dark energy experiments. His academic honors include the OSU Distinguished Scholar Award (2006), the Henry L. Cox Professorship (2013-2018), the Berkeley Prize of the American Astronomical Society (2015), the Dannie Heineman Prize for Astrophysics of the American Astronomical Society and the American Institute of Physics (2021), and election to the National Academy of Sciences (2023).  In 2017, David was named a Distinguished University Professor, the highest faculty award at the university.   He has been chair of the Astronomy Department since 2015.
