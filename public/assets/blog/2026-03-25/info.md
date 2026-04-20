@@ -7,7 +7,7 @@ location: "Module 15, Sala 201"
 affiliation: "University of Edinburgh"
 posterUrl: "./info.png"
 # slides: "" # Add this for slides
-# video: "" # Add this for video
+video: "https://youtu.be/T05HhjP2CkM" # Add this for video
 ---
 Abstract:  In the current cosmological paradigm, galaxies are teeming with dark matter substructures with masses as low as that of Earth (M~10^{-6} Msol). These objects do not form stars, and are only detectable through the perturbations they induce on the motion of visible objects. Being the most dark matter (DM)–dominated galaxies in the Universe, dwarf spheroidal galaxies (dSPhs) provide excellent targets for testing this prediction.
 

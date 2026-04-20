@@ -7,7 +7,7 @@ location: "Module 15, Sala 201"
 affiliation: "IFT"
 posterUrl: "./info.png"
 # slides: "" # Add this for slides
-# video: "" # Add this for video
+video: "https://youtu.be/Gg_6491RJPI" # Add this for video
 ---
 Abstract:    I will present an overview of Higgs physics at the LHC and how precision measurements of the Higgs boson, together with searches for additional scalar particles, provide powerful probes of physics beyond the SM. Many well-motivated extensions of the Higgs sector link collider phenomenology directly to the early Universe. Extended Higgs sectors can accommodate viable Higgs-portal dark matter scenarios that can be probed at the LHC. Moreover, by altering the nature of the electroweak phase transition, a non-minimal Higgs sector can provide the conditions to dynamically generate the matter-antimatter asymmetry of the universe and leave observable imprints in the form of primordial gravitational waves. I will discuss how incorporating the full wealth of current and future LHC data is essential to obtain realistic, data-driven predictions for complementary observations at space-based gravitational-wave observatories like LISA.
 
