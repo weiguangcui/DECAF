@@ -45,9 +45,48 @@ const permalink = `${Astro.site?.href || ''}future-events`;
   :global(.event-markdown table) {
     width: 100%;
     margin-top: 2rem;
+    table-layout: fixed; /* This makes the column widths stick strictly to what we set */
   }
   
   :global(.event-markdown th) {
     text-align: left;
+  }
+
+  /* Control Column Widths (total should be ~100%) */
+  
+  /* Column 1: Date */
+  :global(.event-markdown th:nth-child(1)),
+  :global(.event-markdown td:nth-child(1)) {
+    width: 10%;
+  }
+
+  /* Column 2: Time */
+  :global(.event-markdown th:nth-child(2)),
+  :global(.event-markdown td:nth-child(2)) {
+    width: 6%;
+  }
+
+  /* Column 3: Speaker */
+  :global(.event-markdown th:nth-child(3)),
+  :global(.event-markdown td:nth-child(3)) {
+    width: 15%;
+  }
+
+  /* Column 4: Affiliation */
+  :global(.event-markdown th:nth-child(4)),
+  :global(.event-markdown td:nth-child(4)) {
+    width: 15%;
+  }
+
+  /* Column 5: Topic / Title */
+  :global(.event-markdown th:nth-child(5)),
+  :global(.event-markdown td:nth-child(5)) {
+    width: 42%;
+  }
+
+  /* Column 6: Location */
+  :global(.event-markdown th:nth-child(6)),
+  :global(.event-markdown td:nth-child(6)) {
+    width: 12%;
   }
 </style>
