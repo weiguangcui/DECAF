@@ -5,10 +5,15 @@ import remarkGfm from 'remark-gfm'
 import remarkSmartypants from 'remark-smartypants'
 import rehypeExternalLinks from 'rehype-external-links'
 import tailwind from '@astrojs/tailwind';
+import { getOrUpdateApodLocalPath } from './src/lib/apod.ts';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), mdx(), svelte()],
+  integrations: [
+    tailwind(), 
+    mdx(), 
+    svelte()
+  ],
   site: 'https://weiguangcui.github.io/',
   base: '/DECAF/',
   markdown: {

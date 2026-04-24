@@ -128,6 +128,13 @@ export async function getOrUpdateApodLocalPath(): Promise<string | null> {
     fs.writeFileSync(abs, buf);
     const webPath = `/assets/apod/${fname}`;
 
+    // If dist directory exists (e.g. during build), copy it there directly
+    const distDir = path.join(root, 'dist', 'assets', 'apod');
+    if (fs.existsSync(path.join(root, 'dist'))) {
+      ensureDir(distDir);
+      fs.copyFileSync(abs, path.join(distDir, fname));
+    }
+
     // Clean up older files (best-effort)
     try {
       const files = fs.readdirSync(apodDir);

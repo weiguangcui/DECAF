@@ -3,10 +3,14 @@ const rawBASE = (import.meta as any).env?.BASE_URL ?? '/';
 const BASE = rawBASE.endsWith('/') ? rawBASE : `${rawBASE}/`;
 ---
 <style>
-  a {
+  .logo-container {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
+  }
+
+  .logo-link {
+    display: block;
   }
 
   img {
@@ -22,8 +26,14 @@ const BASE = rawBASE.endsWith('/') ? rawBASE : `${rawBASE}/`;
   }
 </style>
 
-<a href={BASE}>
-  <img alt="Blog Logo" src={`${BASE}assets/DFT.png`} />
-  <img alt="Blog Logo" src={`${BASE}assets/ciaff.jpg`} />
-  <!-- <img alt="Blog Logo" src={`${BASE}assets/ift.png`} /> -->
-</a>
+<div class="logo-container">
+  <a class="logo-link" href="https://www.uam.es/Ciencias/FisicaTeorica/1234888258356.htm" target="_blank" rel="noopener noreferrer">
+    <img alt="DFT Logo" src={`${BASE}assets/DFT.png`} />
+  </a>
+  <a class="logo-link" href="https://ciaff.uam.es/" target="_blank" rel="noopener noreferrer">
+    <img alt="CIAFF Logo" src={`${BASE}assets/ciaff.jpg`} />
+  </a>
+  <a class="logo-link" href="https://www.ift.uam-csic.es/en" target="_blank" rel="noopener noreferrer">
+    <img alt="IFT Logo" src={`${BASE}assets/ift.png`} />
+  </a>
+</div>
