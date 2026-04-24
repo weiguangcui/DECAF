@@ -4,49 +4,87 @@ import { getPastEvents } from '../../lib/events';
 
 const title = 'Events';
 const description = 'Past Events';
-const permalink = `${Astro.site.href}events`;
+const permalink = `${Astro.site?.href || ''}events`;
 const BASE: string = (import.meta as any).env?.BASE_URL || '/';
 const pastEvents = await getPastEvents();
+
+// Group events by year
+const eventsByYear = pastEvents.reduce((acc, ev) => {
+  const year = ev.date ? ev.date.substring(0, 4) : ev.dir.substring(0, 4);
+  if (!acc[year]) {
+    acc[year] = [];
+  }
+  acc[year].push(ev);
+  return acc;
+}, {} as Record<string, typeof pastEvents>);
+
+const sortedYears = Object.keys(eventsByYear).sort((a, b) => parseInt(b) - parseInt(a));
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink} current="blog">
   <div class="container">
     <h1>Past Events</h1>
-    {pastEvents.length > 0 ? (
-      <div class="events-list">
-        {pastEvents.map((ev) => (
-          <div class="event-item" id={ev.dir}>
-            <h2 class="event-title">
-              {ev.title || ev.dir}
-              <a class="event-permalink" href={`#${encodeURIComponent(ev.dir)}`} aria-label="Permalink">¶</a>
-            </h2>
-            <p class="event-meta">
-              {ev.speaker ? ev.speaker : ''}
-              {ev.affiliation ? ` (${ev.affiliation})` : ''}
-              {ev.date ? ` • ${ev.date}` : ''}
-              {ev.time ? ` • ${ev.time}` : ''}
-              {ev.location ? ` • ${ev.location}` : ''}
-            </p>
-            {ev.excerpt ? <p class="event-excerpt">{ev.excerpt}</p> : null}
-            <div class="event-links">
-              {ev.imagePath && (
-                <a href={ev.imagePath.startsWith('http://') || ev.imagePath.startsWith('https://') || ev.imagePath.startsWith('//') ? ev.imagePath : ev.imagePath.startsWith('/') ? `${BASE}${ev.imagePath.slice(1)}` : `${BASE}${ev.imagePath}`} class="event-link" target="_blank" rel="noopener noreferrer">
-                  📄 Poster
-                </a>
-              )}
-              {ev.slidesUrl && (
-                <a href={ev.slidesUrl.startsWith('http://') || ev.slidesUrl.startsWith('https://') || ev.slidesUrl.startsWith('//') ? ev.slidesUrl : ev.slidesUrl.startsWith('/') ? `${BASE}${ev.slidesUrl.slice(1)}` : `${BASE}${ev.slidesUrl}`} class="event-link" target="_blank" rel="noopener noreferrer">
-                  📊 Slides
-                </a>
-              )}
-              {ev.videoUrl && (
-                <a href={ev.videoUrl.startsWith('http://') || ev.videoUrl.startsWith('https://') || ev.videoUrl.startsWith('//') ? ev.videoUrl : ev.videoUrl.startsWith('/') ? `${BASE}${ev.videoUrl.slice(1)}` : `${BASE}${ev.videoUrl}`} class="event-link" target="_blank" rel="noopener noreferrer">
-                  ▶️ Video
-                </a>
-              )}
+    {sortedYears.length > 0 ? (
+      <div class="events-tabs-container">
+        <div class="tab-buttons" role="tablist">
+          {sortedYears.map((year, index) => (
+            <button 
+              class={`tab-button ${index === 0 ? 'active' : ''}`} 
+              role="tab" 
+              aria-selected={index === 0 ? "true" : "false"} 
+              aria-controls={`panel-${year}`} 
+              id={`tab-${year}`}
+              data-year={year}
+            >
+              {year}
+            </button>
+          ))}
+        </div>
+
+        <div class="tab-panels">
+          {sortedYears.map((year, index) => (
+            <div 
+              class={`tab-panel ${index === 0 ? 'active' : ''}`} 
+              role="tabpanel" 
+              id={`panel-${year}`} 
+              aria-labelledby={`tab-${year}`}
+            >
+              <div class="events-list">
+                {eventsByYear[year].map((ev) => (
+                  <div class="event-item" id={ev.dir}>
+                    <h3 class="event-title">
+                      <a href={`${BASE}blog/${ev.dir}`}>{ev.title || ev.dir}</a>
+                    </h3>
+                    <p class="event-meta">
+                      {ev.speaker ? ev.speaker : ''}
+                      {ev.affiliation ? ` (${ev.affiliation})` : ''}
+                      {ev.date ? ` • ${ev.date}` : ''}
+                      {ev.time ? ` • ${ev.time}` : ''}
+                      {ev.location ? ` • ${ev.location}` : ''}
+                    </p>
+                    <div class="event-links">
+                      {ev.imagePath && (
+                        <a href={ev.imagePath.startsWith('http://') || ev.imagePath.startsWith('https://') || ev.imagePath.startsWith('//') ? ev.imagePath : ev.imagePath.startsWith('/') ? `${BASE}${ev.imagePath.slice(1)}` : `${BASE}${ev.imagePath}`} class="event-link" target="_blank" rel="noopener noreferrer">
+                          📄 Poster
+                        </a>
+                      )}
+                      {ev.slidesUrl && (
+                        <a href={ev.slidesUrl.startsWith('http://') || ev.slidesUrl.startsWith('https://') || ev.slidesUrl.startsWith('//') ? ev.slidesUrl : ev.slidesUrl.startsWith('/') ? `${BASE}${ev.slidesUrl.slice(1)}` : `${BASE}${ev.slidesUrl}`} class="event-link" target="_blank" rel="noopener noreferrer">
+                          📊 Slides
+                        </a>
+                      )}
+                      {ev.videoUrl && (
+                        <a href={ev.videoUrl.startsWith('http://') || ev.videoUrl.startsWith('https://') || ev.videoUrl.startsWith('//') ? ev.videoUrl : ev.videoUrl.startsWith('/') ? `${BASE}${ev.videoUrl.slice(1)}` : `${BASE}${ev.videoUrl}`} class="event-link" target="_blank" rel="noopener noreferrer">
+                          ▶️ Video
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     ) : (
       <p>No past events found.</p>
@@ -55,19 +93,101 @@ const pastEvents = await getPastEvents();
   </div>
 </BaseLayout>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.tab-button');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons and panels
+        buttons.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        panels.forEach(p => p.classList.remove('active'));
+
+        // Add active class to clicked button and corresponding panel
+        button.classList.add('active');
+        button.setAttribute('aria-selected', 'true');
+        const year = button.getAttribute('data-year');
+        const panel = document.getElementById(`panel-${year}`);
+        if (panel) {
+          panel.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
+
 <style>
+  .events-tabs-container {
+    margin-top: 2rem;
+  }
+  .tab-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+  .tab-button {
+    background: var(--color-bg-secondary, #f3f4f6);
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 9999px; /* Pill shape */
+    padding: 0.5rem 1.5rem;
+    font-size: 1.1rem;
+    font-family: var(--font-family-sans);
+    font-weight: 700;
+    color: var(--text-secondary, #4b5563);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  .tab-button:hover {
+    background: var(--color-bg-tertiary, #e5e7eb);
+    color: var(--color-text, #111827);
+    transform: translateY(-1px);
+  }
+  .tab-button.active {
+    background: var(--color-text, #111827);
+    color: var(--color-bg, #ffffff);
+    border-color: var(--color-text, #111827);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  .tab-panel {
+    display: none;
+  }
+  .tab-panel.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
   .events-list {
     margin-bottom: 40px;
   }
-  .event-item + .event-item {
+  .event-item {
     margin-top: 20px;
     padding-top: 20px;
+  }
+  .event-item + .event-item {
     border-top: 1px solid var(--border-color, #e5e7eb);
   }
   .event-title {
     font-family: var(--font-family-sans);
     font-weight: 700;
     margin: 0 0 6px 0;
+    font-size: 1.5em;
+  }
+  .event-title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .event-title a:hover {
+    text-decoration: underline;
   }
   .event-links {
     margin-top: 1rem;
@@ -80,7 +200,7 @@ const pastEvents = await getPastEvents();
     align-items: center;
     gap: 0.25rem;
     padding: 0.25rem 0.5rem;
-    background: var(--color-bg-secondary);
+    background: var(--color-bg-secondary, #f3f4f6);
     border-radius: 4px;
     color: var(--color-text);
     text-decoration: none;
@@ -88,24 +208,11 @@ const pastEvents = await getPastEvents();
     transition: background-color 0.2s;
   }
   .event-link:hover {
-    background: var(--color-bg-tertiary);
+    background: var(--color-bg-tertiary, #e5e7eb);
     text-decoration: none;
-  }
-  .event-title .event-permalink {
-    font-weight: 400;
-    margin-left: .5em;
-    opacity: .5;
-    text-decoration: none;
-  }
-  .event-title .event-permalink:hover {
-    opacity: 1;
   }
   .event-meta {
     color: var(--text-secondary);
     margin: 0 0 6px 0;
   }
-  .event-excerpt {
-    margin: 0;
-  }
-  
 </style>
