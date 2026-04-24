@@ -22,7 +22,7 @@ const sortedYears = Object.keys(eventsByYear).sort((a, b) => parseInt(b) - parse
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink} current="blog">
-  <div class="container">
+  <div class="events-page-wrapper">
     <h1>Past Events</h1>
     {sortedYears.length > 0 ? (
       <div class="events-tabs-container">

@@ -65,8 +65,8 @@ const BASE = rawBASE.endsWith('/') ? rawBASE : `${rawBASE}/`;
 </style>
 
 <nav>
+  <a class={current === "future" ? "selected" : ""} href={`${BASE}future-events`}>Future Events</a>
   <a class={current === "" ? "selected" : ""} href={BASE}>Latest Event</a>
-  <!-- <a class={current === "about" ? "selected" : ""} href='/about'>about</a> -->
   <a class={current === "blog" ? "selected" : ""} href={`${BASE}blog`}>Past Events</a>
   <div class="theme-toggle-container">
     <ThemeToggleButton client:load />
