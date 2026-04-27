@@ -23,20 +23,20 @@ Below is a list of all planned DeCAF seminars for the second half of 2026. DeCAF
 
 | Date (Wed.)      | Time  | Speaker          | Affiliation               | Topic / Title                       | Location |
 | :--------- | :------- | :--------------- | :------------------------ | :---------------------------------- | :------- |
-| 2026-09-09 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-09-16 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-09-23 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-09-30 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-10-07 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-10-14 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-10-21 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-10-28 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-11-04 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-11-11 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-11-18 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-11-25 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-12-02 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-12-09 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
-| 2026-12-16 | 3PM | To be announced  | TBD                       | TBD                                 | TBA      |
+| 2026-09-09 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
+| 2026-09-16 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
+| 2026-09-23 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
+| 2026-09-30 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
+| 2026-10-07 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
+| 2026-10-14 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
+| 2026-10-21 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
+| 2026-10-28 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
+| 2026-11-04 | 3PM | Patricia Sanchez Blazquez  | UCM                       | TBD                       | Sala 201      |
+| 2026-11-11 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
+| 2026-11-18 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
+| 2026-11-25 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
+| 2026-12-02 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
+| 2026-12-09 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
+| 2026-12-16 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201      |
 
 *Note: To update this list, edit the file `public/assets/future-events.md`.*
