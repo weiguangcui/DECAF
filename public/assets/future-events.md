@@ -12,9 +12,9 @@ Below is a list of all planned DeCAF seminars for the second half of 2026. DeCAF
 | Date (Wed.)      | Time  | Speaker          | Affiliation               | Topic / Title | Location |
 | :--------- | :------- | :--------------- | :------------------------ | :--------------------------------------------------- | :------- |
 | 2026-04-29 | 3PM | Itziar Aretxaga | CAB | Mock redshift surveys of the mm-wavelength sky | Sala 201 |
-| 2026-05-05 | 4PM | Benjamin Oppenheimer | University of Colorado | TBD (Extra) | Sala 300 (M8) |
+| 2026-05-05 | 4PM | Benjamin Oppenheimer | University of Colorado | (Extra) A Multi-Waveband Overview of the Circumgalactic Medium and Dark Baryons on Cosmic Scales | Sala 300 (M8) |
 | 2026-05-06 | 3PM | Federico Nola | University of Campania Luigi Vanvitelli | Axions in neutron stars: cooling bounds beyond the nucleonic core composition | Sala 201 |
-| 2026-05-12 | 3PM | Changhoon Hahn | University of Texas at Austin | Extracting the Full Cosmological Information of Galaxy Surveys with Generative AI | Sala 300 (M8) |
+| 2026-05-12 | 3PM | Changhoon Hahn | University of Texas at Austin | (Extra) Extracting the Full Cosmological Information of Galaxy Surveys with Generative AI | Sala 300 (M8) |
 | 2026-05-13 | 3PM | tbd | tbd | Title | Sala 201 |
 | 2026-05-27 | 3PM | Lucia Perez | CCA | The Impact of Galaxy Formation on Galaxy Biasing, and Informative Priors for Primordial non-Gaussianity Constraints | Sala 300 (M8) |
 | 2026-06-03 | 3PM | Yuri Oku | Osaka University | Title | Sala 201 |
