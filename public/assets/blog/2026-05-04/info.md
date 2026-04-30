@@ -1,5 +1,5 @@
 ---
-title: "A Multi-Waveband Overview of the Circumgalactic Medium and Dark Baryons on Cosmic Scales"
+title: "[*Extra*] A Multi-Waveband Overview of the Circumgalactic Medium and Dark Baryons on Cosmic Scales"
 speaker: "Dr. Benjamin Oppenheimer"
 date: "2026-05-05"
 time: "04:00 PM - 05:00 PM"
