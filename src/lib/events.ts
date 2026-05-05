@@ -124,11 +124,11 @@ function parseEvent(baseDir: string, dirName: string): EventInfo | null {
   if (!mdPath) return null;
   const imgAbs = findImageFile(full);
   const mdDir = path.dirname(mdPath);
-  
+
   try {
     const raw = fs.readFileSync(mdPath, 'utf-8');
     const { data, content } = matter(raw);
-    
+
     // Process poster URL
     let imagePath: string | null = null;
     if (typeof data.posterUrl === 'string') {
@@ -176,7 +176,7 @@ export async function getLatestEvent(): Promise<EventInfo | null> {
   for (const d of dirs) {
     const ev = parseEvent(baseDir, d);
     if (ev) {
-      const ds = (ev.date || ev.dir || '').trim();
+      const ds = (ev.dir || '').trim();
       const dt = ds ? new Date(ds) : null;
       events.push(Object.assign(ev, { __date: dt && !isNaN(dt.getTime()) ? dt : null }));
     }
