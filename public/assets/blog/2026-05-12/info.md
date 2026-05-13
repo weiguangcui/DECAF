@@ -6,8 +6,8 @@ time: "03:00 PM - 04:00 PM"
 location: "Sala 201 (M15)"
 affiliation: "University of Texas at Austin"
 posterUrl: "./info.png"
-# slides: "" # Add this for slides
-# video: "https://youtu.be/bt0kWiZW5_E" # Add this for video
+slides: "https://dauam.sharepoint.com/:b:/s/DeCAFseminarsoftheDFT/IQA5CduG2pwRTLwWtE5poR5PAXKU0x6BBbeb28WSnrknJlo?e=xgM60W" # Add this for slides
+video: "https://youtu.be/9lMFd6EoIM8" # Add this for video
 ---
 Abstract: Galaxy surveys of the next decade will observe hundreds of millions of galaxies over unprecedented cosmic volumes and produce detailed 3D maps of galaxies. These maps encode the growth and expansion histories of the Universe that can be used to precisely test the standard “Lambda-CDM” cosmological model and probe the nature of dark energy. While, current analyses extract some of this cosmological information by summarizing the galaxy maps into 2-point clustering statistics, much more information still remain in the data. In my talk, I will present how we can leverage high-fidelity cosmological simulations with generative AI to extract the full cosmological information of galaxy surveys. I will present SimBIG, a galaxy clustering analysis framework using simulation-based inference with normalizing flows. I will show the latest results from applying SimBIG to data from current galaxy surveys and showcase the improvements we find over the current baseline analyses. Lastly, I will discuss how SimBIG will be extended to the next-generation galaxy surveys to produce even more precise tests of the Lambda-CDM model and probe dark energy across cosmic history.
 
