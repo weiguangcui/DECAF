@@ -23,7 +23,7 @@ Below is a list of all planned DeCAF seminars for the second half of 2026. DeCAF
 
 | Date (Wed.)      | Time  | Speaker          | Affiliation               | Topic / Title                       | Location |
 | :--------- | :------- | :--------------- | :------------------------ | :---------------------------------- | :------- |
-| 2026-09-09 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201 (M15)      |
+| 2026-09-09 | 3PM | Jordan Koechler  | INFN Torino               | Antinuclei production from dark matter: limits and prospects for GAPS                                | Sala 201 (M15)      |
 | 2026-09-16 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201 (M15)      |
 | 2026-09-23 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201 (M15)      |
 | 2026-09-30 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201 (M15)      |
