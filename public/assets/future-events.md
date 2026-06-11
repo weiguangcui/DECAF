@@ -19,7 +19,7 @@ Below is a list of all planned DeCAF seminars for the second half of 2026. DeCAF
 | 2026-05-27 | 3PM | Lucia Perez | CCA | The Impact of Galaxy Formation on Galaxy Biasing, and Informative Priors for Primordial non-Gaussianity Constraints | Sala 300 (M8) |
 | 2026-06-03 | 3PM | Yuri Oku | Osaka University | CROCODILE-2 for The300 project | Sala 201 |
 | 2026-06-10 | 3PM | Bruno De Bórtoli | Instituto de Astrofísica de La Plata | Scaling Relations for Globular Cluster Systems in Early-Type Galaxies | Sala 201 |
-| 2026-06-17 | 3PM | Markus Dierigl  | TBD                       | TBD                                 | Sala 201 (M15)      |
+| 2026-06-17 | 3PM | Markus Dierigl  | CERN | Symmetries in QFT and Quantum Gravity | Sala 201 (M15)      |
 ---
 
 | Date (Wed.)      | Time  | Speaker          | Affiliation               | Topic / Title                       | Location |
