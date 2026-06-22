@@ -75,7 +75,7 @@ async function sendButtondownEmail(ev) {
       'Content-Type': 'application/json',
       'Authorization': `Token ${BUTTONDOWN_API_KEY}`,
     },
-    body: JSON.stringify({ subject, body, publish: true })
+    body: JSON.stringify({ subject, body, status: 'sent' })
   });
   if (!res.ok) {
     const text = await res.text();
