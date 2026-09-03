@@ -1,5 +1,5 @@
 ---
-title: "Cosmic-ray antinuclei in dark matter searches: Insights from collider data"
+title: "[Extra] Cosmic-ray antinuclei in dark matter searches: Insights from collider data"
 speaker: "Dr. Jordan Koechler"
 date: "2026-09-09"
 time: "12:00 PM - 13:00 PM"

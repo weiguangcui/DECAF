@@ -9,24 +9,9 @@ current: future
 
 Below is a list of all planned DeCAF seminars for the second half of 2026. DeCAF seminars are normally held on Wednesdays at 15:00, but we are flexible and can accommodate other days/times if needed. Please contact the DeCAF organizers ([Weiguang Cui](mailto:weiguang.cui@uam.es), [Pier Paolo Giardino](mailto:pier.giardino@uam.es), or [Elias Lopez Asamar](mailto:elias.lopez@uam.es)) if you would like to give a talk.
 
-| Date (Wed.)      | Time  | Speaker          | Affiliation               | Topic / Title | Location |
-| :--------- | :------- | :--------------- | :------------------------ | :--------------------------------------------------- | :------- |
-| 2026-04-29 | 3PM | Itziar Aretxaga | CAB | Mock redshift surveys of the mm-wavelength sky | Sala 201 |
-| 2026-05-05 | 4PM | Benjamin Oppenheimer | University of Colorado | (Extra) A Multi-Waveband Overview of the Circumgalactic Medium and Dark Baryons on Cosmic Scales | Sala 300 (M8) |
-| 2026-05-06 | 3PM | Federico Nola | University of Campania Luigi Vanvitelli | Axions in neutron stars: cooling bounds beyond the nucleonic core composition | Sala 201 |
-| 2026-05-12 | 3PM | Changhoon Hahn | University of Texas at Austin | (Extra) Extracting the Full Cosmological Information of Galaxy Surveys with Generative AI | Sala 201 (M15) |
-| 2026-05-13 | 3:30PM | Benjamin Grinstein | University of California, San Diego | [DIFT Colloquium: Buckets versus pipes: the neutron lifetime puzzle](https://www.ift.uam-csic.es/event/dift-colloquium-by-benjamin-grinstein-university-of-california-san-diego/)  | CFTMAT Auditorium |
-| 2026-05-27 | 3PM | Lucia Perez | CCA | The Impact of Galaxy Formation on Galaxy Biasing, and Informative Priors for Primordial non-Gaussianity Constraints | Sala 300 (M8) |
-| 2026-06-03 | 3PM | Yuri Oku | Osaka University | CROCODILE-2 for The300 project | Sala 201 |
-| 2026-06-10 | 3PM | Bruno De Bórtoli | Instituto de Astrofísica de La Plata | Scaling Relations for Globular Cluster Systems in Early-Type Galaxies | Sala 201 |
-| 2026-06-17 | 3PM | Markus Dierigl  | CERN | Symmetries in QFT and Quantum Gravity | Sala 201 (M15)      |
----
-
 | Date (Wed.)      | Time  | Speaker          | Affiliation               | Topic / Title                       | Location |
 | :--------- | :------- | :--------------- | :------------------------ | :---------------------------------- | :------- |
-| 2026-09-09 | 12:00PM | Jordan Koechler  | INFN Torino               | Cosmic-ray antinuclei in dark matter searches: Insights from collider data                                | Sala 201 (M15)      |
-| 2026-09-16 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201 (M15)      |
-| 2026-09-23 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201 (M15)      |
+| 2026-09-09 | 12:00PM | Jordan Koechler  | INFN Torino               | (extra) Cosmic-ray antinuclei in dark matter searches: Insights from collider data                                | Sala 201 (M15)      |
 | 2026-09-30 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201 (M15)      |
 | 2026-10-07 | 3PM | To be announced  | TBD                       | TBD                                 | Sala 201 (M15)      |
 | 2026-10-14 | 3PM | Pedro Jose de la Torre Luque  | UAM | TBD | Sala 201 (M15)      |
