@@ -2,7 +2,7 @@
 title: "[Extra] Nuclear structure to unveil physics beyond the Standard Model"
 speaker: "Prof. Javier Menendez"
 date: "2026-09-25"
-time: "12:00 PM - 13:00 PM"
+time: "12:00 PM"
 location: "Sala 201 (M15)"
 affiliation: "Universitat de Barcelona"
 posterUrl: "./info.png"
