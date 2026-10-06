@@ -11,17 +11,17 @@ Below is a list of all planned DeCAF seminars for the second half of 2026. DeCAF
 
 | Date (Wed.)      | Time  | Speaker          | Affiliation               | Topic / Title                       | Location |
 | :--------- | :------- | :--------------- | :------------------------ | :---------------------------------- | :------- |
-| 2026-09-09 (extra) | 12:00 | Jordan Koechler                | INFN Torino               | Cosmic-ray antinuclei in dark matter searches: Insights from collider data                                | Sala 201 (M15)      |
-| 2026-09-25 (extra) | 12:00 | Javier Menendez                | Universitat de Barcelona  | TBD                                 | Sala 201 (M15)      |
-| 2026-10-07         | --    | -- (DIFT Colloquium this week) | --                        | --                                  | --                  |
-| 2026-10-14         | 3PM   | Alberto Dominguez              | UCM                       | --                                 | --                    |
+| 2026-09-09 (extra) | 12:00 | Jordan Koechler                | INFN Torino               | Cosmic-ray antinuclei in dark matter searches: Insights from collider data | Sala 201 (M15)      |
+| 2026-09-25 (extra) | 12:00 | Javier Menendez                | Universitat de Barcelona  | Nuclear structure to unveil physics beyond the Sandard Model               | Sala 201 (M15)      |
+| 2026-10-07         | --    | -- (DIFT Colloquium this week) | --                        | --                                                                         | --                  |
+| 2026-10-14         | 3PM   | Alberto Dominguez              | UCM                       | Probing Cosmic History and the Hubble Constant via Gamma-Ray Attenuation   | Sala 201 (M15)      |
 | 2026-10-21         | 3PM   | Pedro Jose de la Torre Luque   | UAM                       | TBD                                 | Sala 201 (M15)      |
 | 2026-10-28         | 3PM   | To be announced                | TBD                       | TBD                                 | Sala 201 (M15)      |
 | 2026-11-04         | 3PM   | Patricia Sanchez Blazquez      | UCM                       | TBD                                 | Sala 201 (M15)      |
-| 2026-11-11         | --   | -- (DIFT Colloquium this week)  | --                       | --                                 | --                    |
+| 2026-11-11         | --    | -- (DIFT Colloquium this week) | --                        | --                                  | --                  |
 | 2026-11-18         | 3PM   | To be announced                | TBD                       | TBD                                 | Sala 201 (M15)      |
 | 2026-11-25         | 3PM   | To be announced                | TBD                       | TBD                                 | Sala 201 (M15)      |
-| 2026-12-02         | 3PM   | Stefano Borgani                | Trieste                       | TBD                                 | Sala 201 (M15)      |
+| 2026-12-02         | 3PM   | Stefano Borgani                | Trieste                   | TBD                                 | Sala 201 (M15)      |
 | 2026-12-09         | 3PM   | To be announced                | TBD                       | TBD                                 | Sala 201 (M15)      |
 
 *Note: To update this list, edit the file `public/assets/future-events.md`.*
