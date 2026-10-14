@@ -1,7 +1,8 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-const APOD_API = 'https://api.nasa.gov/planetary/apod';
+const NEW_APOD_API = 'https://science.nasa.gov/wp-json/wp/v2/apod-basic?per_page=1';
+const LEGACY_APOD_API = 'https://api.nasa.gov/planetary/apod';
 
 export type ApodInfo = {
   date: string; // YYYY-MM-DD
@@ -10,6 +11,40 @@ export type ApodInfo = {
   hdurl?: string;
   thumbnail_url?: string;
 };
+
+async function fetchApodInfo(apiKey: string): Promise<ApodInfo | null> {
+  // 1. Try the new NASA Science WordPress endpoint (public, no API key needed, no rate limit)
+  try {
+    const res = await fetch(NEW_APOD_API, {
+      headers: { 'User-Agent': 'DeCAF-Website/1.0' },
+      cache: 'no-store',
+    });
+    if (res.ok) {
+      const data = await res.json();
+      const item = Array.isArray(data) ? data[0] : data;
+      if (item && item.date) {
+        return {
+          date: item.date,
+          media_type: item.media_type || 'image',
+          hdurl: item.hdurl,
+          url: item.hdurl || (item.url && /\.(jpe?g|png|webp|gif)(\?|$)/i.test(item.url) ? item.url : undefined),
+          thumbnail_url: item.thumbnail_url || item.basic_html_url,
+        };
+      }
+    }
+  } catch { }
+
+  // 2. Fallback to legacy api.nasa.gov endpoint
+  try {
+    const url = `${LEGACY_APOD_API}?api_key=${apiKey}&thumbs=true`;
+    const res = await fetch(url, { cache: 'no-store' });
+    if (res.ok) {
+      return (await res.json()) as ApodInfo;
+    }
+  } catch { }
+
+  return null;
+}
 
 type Manifest = {
   date: string;
@@ -26,7 +61,7 @@ function readManifest(manifestPath: string): Manifest | null {
     const raw = fs.readFileSync(manifestPath, 'utf-8');
     const data = JSON.parse(raw);
     if (data && typeof data.date === 'string' && typeof data.file === 'string') return data as Manifest;
-  } catch {}
+  } catch { }
   return null;
 }
 
@@ -40,7 +75,7 @@ function findExistingApodWebPath(apodDir: string): string | null {
     // Prefer a single file named like apod.* (excluding manifest.json)
     const cand = files.find((f) => f !== 'manifest.json' && f.startsWith('apod.') || f === 'apod' || f.startsWith('apod-'));
     if (cand) return `/assets/apod/${cand}`;
-  } catch {}
+  } catch { }
   return null;
 }
 
@@ -77,16 +112,8 @@ export async function getOrUpdateApodLocalPath(): Promise<string | null> {
 
   ensureDir(apodDir);
 
-  const API_KEY = (import.meta as any).env?.PUBLIC_NASA_API_KEY || 'DEMO_KEY';
-  const url = `${APOD_API}?api_key=${API_KEY}&thumbs=true`;
-
-  let info: ApodInfo | null = null;
-  try {
-    const res = await fetch(url, { cache: 'no-store' });
-    if (res.ok) {
-      info = (await res.json()) as ApodInfo;
-    }
-  } catch {}
+  const API_KEY = (import.meta as any).env?.PUBLIC_NASA_API_KEY || (typeof process !== 'undefined' && process.env?.PUBLIC_NASA_API_KEY) || 'DEMO_KEY';
+  const info = await fetchApodInfo(API_KEY);
 
   const manifest = readManifest(manifestPath);
 
@@ -140,10 +167,10 @@ export async function getOrUpdateApodLocalPath(): Promise<string | null> {
       const files = fs.readdirSync(apodDir);
       for (const f of files) {
         if (f.startsWith('apod') && f !== fname && f !== 'manifest.json') {
-          try { fs.unlinkSync(path.join(apodDir, f)); } catch {}
+          try { fs.unlinkSync(path.join(apodDir, f)); } catch { }
         }
       }
-    } catch {}
+    } catch { }
 
     const today = new Date().toISOString().slice(0, 10);
     writeManifest(manifestPath, { date: info.date, file: webPath, lastChecked: today });
@@ -182,59 +209,24 @@ export function getCachedApodLocalPath(): string | null {
 // Fire-and-forget: if we haven't checked today, attempt an update asynchronously.
 export function triggerApodUpdateIfNeeded(): void {
   void (async () => {
-    const projectRoot = path.resolve(import.meta.url.replace('file://', ''), '../../..');
-    let root = projectRoot;
-    while (!fs.existsSync(path.join(root, 'package.json'))) {
-      const up = path.dirname(root);
-      if (up === root) break;
-      root = up;
-    }
-    const publicDir = path.join(root, 'public');
-    const apodDir = path.join(publicDir, 'assets', 'apod');
-    const manifestPath = path.join(apodDir, 'manifest.json');
-    ensureDir(apodDir);
-
-    const today = new Date().toISOString().slice(0, 10);
-    const manifest = readManifest(manifestPath);
-    if (manifest?.lastChecked === today) return; // already checked today
-
-    const API_KEY = (import.meta as any).env?.PUBLIC_NASA_API_KEY || 'DEMO_KEY';
-    const url = `${APOD_API}?api_key=${API_KEY}&thumbs=true`;
-
     try {
-      const res = await fetch(url, { cache: 'no-store' });
-      if (!res.ok) {
-        writeManifest(manifestPath, { date: manifest?.date || 'unknown', file: manifest?.file || findExistingApodWebPath(apodDir) || '', lastChecked: today });
-        return;
+      const projectRoot = path.resolve(import.meta.url.replace('file://', ''), '../../..');
+      let root = projectRoot;
+      while (!fs.existsSync(path.join(root, 'package.json'))) {
+        const up = path.dirname(root);
+        if (up === root) break;
+        root = up;
       }
-      const info = (await res.json()) as ApodInfo;
-      const imgUrl = pickApodImageUrl(info);
-      if (!imgUrl) {
-        writeManifest(manifestPath, { date: manifest?.date || 'unknown', file: manifest?.file || findExistingApodWebPath(apodDir) || '', lastChecked: today });
-        return;
-      }
-      const resp = await fetch(imgUrl);
-      if (!resp.ok) {
-        writeManifest(manifestPath, { date: manifest?.date || 'unknown', file: manifest?.file || findExistingApodWebPath(apodDir) || '', lastChecked: today });
-        return;
-      }
-      const buf = Buffer.from(await resp.arrayBuffer());
-      const ext = extFromUrl(imgUrl);
-      const fname = `apod${ext}`;
-      const abs = path.join(apodDir, fname);
-      fs.writeFileSync(abs, buf);
-      const webPath = `/assets/apod/${fname}`;
-      try {
-        const files = fs.readdirSync(apodDir);
-        for (const f of files) {
-          if (f.startsWith('apod') && f !== fname && f !== 'manifest.json') {
-            try { fs.unlinkSync(path.join(apodDir, f)); } catch {}
-          }
-        }
-      } catch {}
-      writeManifest(manifestPath, { date: info.date, file: webPath, lastChecked: today });
-    } catch {
-      writeManifest(manifestPath, { date: manifest?.date || 'unknown', file: manifest?.file || findExistingApodWebPath(apodDir) || '', lastChecked: today });
-    }
+      const publicDir = path.join(root, 'public');
+      const apodDir = path.join(publicDir, 'assets', 'apod');
+      const manifestPath = path.join(apodDir, 'manifest.json');
+      ensureDir(apodDir);
+
+      const today = new Date().toISOString().slice(0, 10);
+      const manifest = readManifest(manifestPath);
+      if (manifest?.lastChecked === today) return; // already checked today
+
+      await getOrUpdateApodLocalPath();
+    } catch { }
   })();
 }

@@ -5,7 +5,6 @@ import remarkGfm from 'remark-gfm'
 import remarkSmartypants from 'remark-smartypants'
 import rehypeExternalLinks from 'rehype-external-links'
 import tailwind from '@astrojs/tailwind';
-import { getOrUpdateApodLocalPath } from './src/lib/apod.ts';
 
 // https://astro.build/config
 export default defineConfig({

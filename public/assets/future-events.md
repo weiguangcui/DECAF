@@ -15,7 +15,7 @@ Below is a list of all planned DeCAF seminars for the second half of 2026. DeCAF
 | 2026-09-25 (extra) | 12:00 | Javier Menendez                | Universitat de Barcelona  | Nuclear structure to unveil physics beyond the Sandard Model               | Sala 201 (M15)      |
 | 2026-10-07         | --    | -- (DIFT Colloquium this week) | --                        | --                                                                         | --                  |
 | 2026-10-14         | 3PM   | Alberto Dominguez              | UCM                       | Probing Cosmic History and the Hubble Constant via Gamma-Ray Attenuation   | Sala 201 (M15)      |
-| 2026-10-21         | 3PM   | Pedro Jose de la Torre Luque   | UAM                       | TBD                                 | Sala 201 (M15)      |
+| 2026-10-21         | 3PM   | Pedro Jose de la Torre Luque   | UAM                       | Cosmic Rays in the search for Dark Matter                                  | Sala 201 (M15)      |
 | 2026-10-28         | 3PM   | Ana Rosario Cueto Gomez        | UAM                       | TBD                                 | Sala 201 (M15)      |
 | 2026-11-04         | 3PM   | Patricia Sanchez Blazquez      | UCM                       | TBD                                 | Sala 201 (M15)      |
 | 2026-11-11         | --    | -- (DIFT Colloquium this week) | --                        | --                                  | --                  |
