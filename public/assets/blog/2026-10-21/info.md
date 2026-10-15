@@ -1,5 +1,5 @@
 ---
-title: "Cosmic Rays in the search for Dark Matter "
+title: "Cosmic Rays in the search for Dark Matter"
 speaker: "Prof. Pedro De la Torre Luque"
 date: "2026-10-21"
 time: "15:00 PM"
