@@ -2,6 +2,7 @@
 const rawBASE = (import.meta as any).env?.BASE_URL ?? '/';
 const BASE = rawBASE.endsWith('/') ? rawBASE : `${rawBASE}/`;
 const SUBSCRIBE_URL = 'https://buttondown.com/department_of_theoretical_physics';
+const ONLINE_MEETING_URL = 'https://teams.microsoft.com/meet/32964964378465?p=7LCc7AlTDSJtefNW0b';
 ---
 <footer>
   <span>
@@ -13,7 +14,9 @@ const SUBSCRIBE_URL = 'https://buttondown.com/department_of_theoretical_physics'
     <span class="sep">•</span>
     <a href={`${BASE}feed.xml`}>RSS</a>
     <span class="sep">•</span>
-    <a href=https://www.youtube.com/@DFisicaTe%C3%B3ricaUAM>Youtube Channel</a>
+    <a href="https://www.youtube.com/@DFisicaTe%C3%B3ricaUAM" target="_blank" rel="noopener">Youtube Channel</a>
+    <span class="sep">•</span>
+    <a class="meeting-link" href={ONLINE_MEETING_URL} target="_blank" rel="noopener">Online meeting link</a>
   </div>
 </footer>
 
@@ -37,6 +40,13 @@ const SUBSCRIBE_URL = 'https://buttondown.com/department_of_theoretical_physics'
   }
   .footer-links a:hover {
     text-decoration: underline;
+  }
+  .footer-links a.meeting-link {
+    color: #0078d4;
+    font-weight: 600;
+  }
+  :root.theme-dark .footer-links a.meeting-link {
+    color: #60a5fa;
   }
   .footer-links .sep { opacity: .6; margin: 0 .25em; }
 </style>
