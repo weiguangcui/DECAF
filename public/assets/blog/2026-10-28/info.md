@@ -6,8 +6,8 @@ time: "15:00 PM"
 location: "Sala 201 (M15)"
 affiliation: "DFT, Universidad Autónoma de Madrid"
 posterUrl: "./info.png"
-# slides: # Add this for slides
-# video: # Add this for video
+slides: "https://dauam-my.sharepoint.com/:b:/g/personal/weiguang_cui_uam_es/IQBu5B8or453QbVhmaVpe0kzAXweb202xNhQQr3KWpiNAuM?e=33XMYs"
+video: "https://youtu.be/hODBcDKsg9c?si=CDwXcunf0PI4nmjT"
 ---
 Abstract: Photons provide a powerful probe of the Standard Model (SM), enabling precision tests of quantum chromodynamics (QCD) and electroweak interactions, as well as detailed studies of the Higgs boson. This seminar will present selected ATLAS measurements of inclusive photon, diphoton and three-photon production, exploring the experimental and theoretical challenges involved and their impact on our understanding of perturbative QCD, proton structure and possible new physics.
 The diphoton final state was also instrumental in the discovery of the Higgs boson. Today, it allows for a complete characterisation of the Higgs boson accross the different production modes, through differential cross sections, Simplified Template Cross Sections and effective field theory interpretations, enabling searches for possible deviations from the Standard Model.
