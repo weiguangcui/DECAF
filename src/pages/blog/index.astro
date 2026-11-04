@@ -94,12 +94,12 @@ const sortedYears = Object.keys(eventsByYear).sort((a, b) => parseInt(b) - parse
 </BaseLayout>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function setupTabs() {
     const buttons = document.querySelectorAll('.tab-button');
     const panels = document.querySelectorAll('.tab-panel');
 
     buttons.forEach(button => {
-      button.addEventListener('click', () => {
+      button.onclick = () => {
         // Remove active class from all buttons and panels
         buttons.forEach(b => {
           b.classList.remove('active');
@@ -115,9 +115,12 @@ const sortedYears = Object.keys(eventsByYear).sort((a, b) => parseInt(b) - parse
         if (panel) {
           panel.classList.add('active');
         }
-      });
+      };
     });
-  });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupTabs);
+  document.addEventListener('astro:page-load', setupTabs);
 </script>
 
 <style>

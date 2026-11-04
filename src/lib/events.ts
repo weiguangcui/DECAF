@@ -214,6 +214,10 @@ export async function getAllEvents(): Promise<EventInfo[]> {
 
 export async function getPastEvents(limit?: number): Promise<EventInfo[]> {
   const all = await getAllEvents();
-  const past = all.slice(1); // exclude latest
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const isPast = all[0]?.dir && new Date(all[0].dir) < today;
+  const past = isPast ? all : all.slice(1);
   return typeof limit === 'number' ? past.slice(0, limit) : past;
 }
