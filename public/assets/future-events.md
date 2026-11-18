@@ -20,7 +20,7 @@ Below is a list of all planned DeCAF seminars for the second half of 2026. DeCAF
 | 2026-11-04         | 3PM   | Cancelled due to strike                | --                        | --                                  | --                  |
 | 2026-11-11         | --    | -- (DIFT Colloquium this week)         | --                        | --                                  | --                  |
 | 2026-11-18         | 3PM   | Fien Apers                             | UAM                       | TBA                                 | Sala 201 (M15)      |
-| 2026-11-25         | 3PM   | TBA                                    | TBA                       | TBA                                 | Sala 201 (M15)      |
+| 2026-11-25         | 3PM   | Iván Muñoz Rodríguez                   | CEA Paris-Saclay          | The FornaX XMM-Newton survey of the Fornax Cluster field                 | Sala 201 (M15)      |
 | 2026-12-02         | 3PM   | Stefano Borgani                        | University of Trieste, Trieste            | Galaxy Clusters from Adolescence to Maturity: What do we learn from Simulations?           | Sala 201 (M15)      |
 | 2026-12-09         | 3PM   | Antonio Manuel Mendes Jacques Da Costa | University of Manchester  | TBA                                 | Sala 201 (M15)      |
 | 2027-01-13         | 3PM   | TBA                                    | TBA                       | TBA                                 | Sala 201 (M15)      |
